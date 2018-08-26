@@ -4,8 +4,8 @@ const express = require('express'),
 const app = express();
 
 consign()
-    .include('db.js')
-    .then('models')
+    .include("libs/config.js")
+    .then('db.js')
     .then('/libs/middlewares.js')
     .then('routes')
     .then('libs/boot.js')
