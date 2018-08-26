@@ -1,5 +1,5 @@
-module.exporst = app => {
-    const Users = app.db.model.Users;
+module.exports = app => {
+    const Users = app.db.models.Users;
 
     app.get('/users/:id', (req, res) => {
         Users.findById(req.params.id, {
@@ -15,6 +15,15 @@ module.exporst = app => {
     app.post('/users', (req, res) => {
         Users.create(req.body)
             .then(result => res.json(result))
+            .catch(error => {
+                res.status(412).json({errorMessage: error.message});
+            });
+    });
+
+
+    app.put('/users/:id', (req, res) => {
+        Users.update(req.body, {where: req.params})
+            .then(result => res.sendStatus(204))
             .catch(error => {
                 res.status(412).json({errorMessage: error.message});
             });
