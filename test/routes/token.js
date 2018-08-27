@@ -4,11 +4,16 @@ describe("Routes: Token", () => {
         beforeEach(done => {
             Users.destroy({where: {}})
                 .then(() => Users.create({
-                    name: "user",
+                    name: "UserTest",
                     email: "user@mail.com",
                     password: "user_password"
                 }))
-                .then(done());
+                .then(result => {
+                    done();
+                })
+                .catch(error => {
+                    done(error.message || "Error ao apagar o banco" );
+                });
         });
         describe("status 200", () => {
             it("returns authenticated user token", done => {
@@ -19,6 +24,7 @@ describe("Routes: Token", () => {
                     })
                     .expect(200)
                     .end((error, res) => {
+
                         expect(res.body).to.include.keys("token");
                         done(error);
                     });
