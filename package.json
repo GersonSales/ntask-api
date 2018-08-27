@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
-    "test": "NODE_ENV-test mocha test/**/*.js"
+    "test": "NODE_ENV=test mocha test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "sqlite3": "^4.0.2"
   },
   "devDependencies": {
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "supertest": "^3.1.0"
