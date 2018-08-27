@@ -4,7 +4,8 @@
   "description": "API for task management",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "test": "NODE_ENV-test mocha test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,10 @@
     "passport-jwt": "^4.0.0",
     "sequelize": "^4.38.0",
     "sqlite3": "^4.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
   }
 }

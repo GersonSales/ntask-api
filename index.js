@@ -3,7 +3,7 @@ const express = require('express'),
 
 const app = express();
 
-consign()
+consign({verbose: false})
     .include("libs/config.js")
     .then('db.js')
     .then('auth.js')
