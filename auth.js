@@ -1,17 +1,22 @@
 const passport = require('passport'),
-    {Strategy, ExtractJwt} = require('passport-jwt');
+     passportJWT = require('passport-jwt');
+
+const Strategy = passportJWT.Strategy,
+    ExtractJwt = passportJWT.ExtractJwt;
+
 
 module.exports = app => {
     const Users = app.db.models.Users;
     const cfg = app.libs.config;
     const params = {
         secretOrKey: cfg.jwtSecret,
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+        jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("jwt")
     };
 
     const strategy = new Strategy(params,
         (payload, done) => {
-            Users.findById(payload.id)
+            Users
+                .findById(payload.id)
                 .then(user => {
                     if (user) {
                         return done(null, {
@@ -19,7 +24,7 @@ module.exports = app => {
                             email: user.email
                         });
                     }
-                    return done(null, false);
+                    return done(new Error("User not found"), null);
                 })
                 .catch(error => done(error, null));
         });
