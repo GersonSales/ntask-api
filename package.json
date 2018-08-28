@@ -24,6 +24,7 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "bcrypt": "^3.0.0",
+    "compression": "^1.7.3",
     "consign": "^0.1.6",
     "cors": "^2.8.4",
     "dcrypt": "0.0.2",

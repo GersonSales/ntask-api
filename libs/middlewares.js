@@ -1,7 +1,8 @@
 const bodyParser = require('body-parser'),
     cors = require('cors'),
     morgan = require('morgan'),
-    logger = require('./logger');
+    logger = require('./logger'),
+    compression = require('compression');
 
 module.exports = app => {
     app.set('port', 3000);
@@ -18,6 +19,7 @@ module.exports = app => {
         methods: ["GET", "POST", "PUT", "DELTE"],
         allowedHeaders: ["Content-Type", "Authorization"]
     }));
+    app.use(compression());
     app.use(bodyParser.json());
     app.use(app.auth.initialize());
     app.use((req, res, next) => {
