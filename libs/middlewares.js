@@ -2,7 +2,8 @@ const bodyParser = require('body-parser'),
     cors = require('cors'),
     morgan = require('morgan'),
     logger = require('./logger'),
-    compression = require('compression');
+    compression = require('compression'),
+    helmet = require('helmet');
 
 module.exports = app => {
     app.set('port', 3000);
@@ -14,6 +15,7 @@ module.exports = app => {
             }
         }
     }));
+    app.use(helmet());
     app.use(cors({
         origin: ["http://localhost:3001"],
         methods: ["GET", "POST", "PUT", "DELTE"],
