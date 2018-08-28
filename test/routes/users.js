@@ -24,7 +24,6 @@ describe("Routes: Tasks", () => {
           .set("Authorization", `JWT ${token}`)
           .expect(200)
           .end((err, res) => {
-              console.log("USER ERROR: " + err);
             expect(res.body.name).to.eql("John");
             expect(res.body.email).to.eql("john@mail.net");
             done(err);
